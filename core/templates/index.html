@@ -75,7 +75,7 @@
                 <div style="border: 1px dashed #aaa; padding: 20px; color: #aaa;">[ เพิ่มโลโก้ร้านในหน้า Admin ]</div>
             {% endif %}
         </div>
-        <h2>Lexicanum Navigation</h2>
+        <h2>Volkgaard Lexicanum</h2>
         <a href="/">» หน้าหลัก (Main Page)</a>
         <a href="{% url 'create_ticket' %}">» แจ้งซ่อม (Submit Cogitator)</a>
         <a href="{% url 'track_ticket' %}">» ติดตามสถานะ (Track Spirit)</a>
@@ -97,7 +97,7 @@
 
     <div class="content">
         <div class="wiki-box">
-            <h1>Tech-Priest: รวินท์ งามเลิศ (Volk)</h1>
+            <h1>{{ profile.site_title }}</h1>
             
             <div class="infobox">
                 {% if profile.profile_picture %}
@@ -105,24 +105,36 @@
                 {% else %}
                     <div style="height: 200px; background: #ccc; line-height: 200px; border: 1px solid #000; margin-bottom: 10px;">[ Image Not Found ]</div>
                 {% endif %}
-                <p><strong>สังกัด (Faction):</strong> Volkgaard Tech</p>
-                <p><strong>บทบาท (Role):</strong> IT Support Technician</p>
-                <p><strong>สถานที่ตั้ง:</strong> Terra (Earth)</p>
+                <p><strong>สังกัด (Faction):</strong> {{ profile.faction }}</p>
+                <p><strong>บทบาท (Role):</strong> {{ profile.role }}</p>
+                <p><strong>สถานที่ตั้ง:</strong> {{ profile.location }}</p>
             </div>
 
-            <p>{{ profile.about_me|linebreaks }}</p>
-            <h3>ประวัติการรับใช้ (Service History)</h3>
-            <ul>
-                <li><strong>ปัจจุบัน:</strong> Technical Implementor ที่บริษัท Infinix Solution Company Limited / IT Support Technician ที่ Volkgaard Tech</li>
-                <li><strong>ส.ค. 2562 – ส.ค. 2566:</strong> Goods Flow Assistant In Store Logistics (ISL) แบบพาร์ทไทม์ ที่ IKEA</li>
-                <li><strong>ส.ค. 2561 – มี.ค. 2562:</strong> Mechanic ที่ CLAUS GARAGE COMPANY LIMITED</li>
-            </ul>
+            <div style="margin-bottom: 20px;">
+                {% if profile.about_me %}
+                    <div style="white-space: pre-wrap;">{{ profile.about_me }}</div>
+                {% else %}
+                    <p style="color: #666;">[ พิมพ์ประวัติเบื้องต้นในหน้า Admin ]</p>
+                {% endif %}
+            </div>
+
+           <h3>ประวัติการรับใช้ (Service History)</h3>
+            <div style="margin-bottom: 20px;">
+                {% if profile.service_history %}
+                    <div style="white-space: pre-wrap;">{{ profile.service_history }}</div>
+                {% else %}
+                    <p style="color: #666;">[ พิมพ์ประวัติการทำงานในหน้า Admin ]</p>
+                {% endif %}
+            </div>
 
             <h3>คลังความรู้ (Knowledge Archives)</h3>
-            <ul>
-                <li><strong>พ.ศ. 2562 – 2564:</strong> ปริญญาตรี บริหารธุรกิจบัณฑิต (สาขาระบบสารสนเทศ) – มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร</li>
-                <li><strong>พ.ศ. 2559 – 2561:</strong> ประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.) สาขาคอมพิวเตอร์ธุรกิจ – วิทยาลัยเทคโนโลยีพงษ์สวัสดิ์</li>
-            </ul>
+            <div>
+                {% if profile.knowledge_archives %}
+                    <div style="white-space: pre-wrap;">{{ profile.knowledge_archives }}</div>
+                {% else %}
+                    <p style="color: #666;">[ พิมพ์ประวัติการศึกษาในหน้า Admin ]</p>
+                {% endif %}
+            </div>
             
             <div style="clear: both;"></div>
         </div>
