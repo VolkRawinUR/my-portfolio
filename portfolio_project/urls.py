@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')), # เชื่อมเส้นทางจากแอป Core เข้ามา
+    path('sanctum/', include('sanctum.urls')), # <--- ต้องมีบรรทัดนี้เพิ่มเข้ามาด้วยครับ!
 ]
 
 # บรรทัดนี้ทำให้เว็บแสดงรูปภาพได้เวลาที่รันทดสอบในเครื่อง

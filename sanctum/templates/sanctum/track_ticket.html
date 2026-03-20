@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Machine Spirit - Sanctum</title>
+    <style>
+        body { background-color: #6a6a6a; color: #000; font-family: 'Times New Roman', Times, serif; margin: 0; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; background-color: #f8f9fa; border: 2px solid #333; box-shadow: 10px 10px 20px rgba(0,0,0,0.6); padding: 40px; }
+        h1 { border-bottom: 2px solid #888; padding-bottom: 10px; font-weight: normal; margin-top: 0; font-size: 2.5em; }
+        
+        /* กล่องค้นหา */
+        .search-box { background-color: #e9ecef; border: 1px solid #aaa; padding: 20px; text-align: center; margin-bottom: 30px; }
+        input[type="text"] { width: 70%; padding: 12px; font-size: 1.1em; border: 1px solid #999; }
+        button { background-color: #2c2c2c; color: #fff; border: 2px solid #000; padding: 12px 20px; font-size: 1.1em; cursor: pointer; font-family: 'Times New Roman', serif; font-weight: bold; }
+        button:hover { background-color: #4a5d23; }
+
+        /* ตารางแสดงผลลัพธ์ */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; border: 2px solid #333; }
+        th, td { border: 1px solid #999; padding: 15px; text-align: left; }
+        th { background-color: #2c2c2c; color: #fff; font-weight: bold; }
+        
+        /* ป้ายสถานะสีสันต่างๆ */
+        .status { font-weight: bold; padding: 5px 10px; border: 1px solid #000; display: inline-block; }
+        .status-PENDING { background-color: #ffc107; color: #000; }
+        .status-INSPECTING { background-color: #17a2b8; color: #fff; }
+        .status-WAITING_PARTS { background-color: #fd7e14; color: #fff; }
+        .status-REPAIRING { background-color: #007bff; color: #fff; }
+        .status-COMPLETED { background-color: #28a745; color: #fff; }
+        .status-DELIVERED { background-color: #6c757d; color: #fff; }
+        
+        a.back-link { display: inline-block; margin-top: 20px; color: #4a5d23; font-weight: bold; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ค้นหาวิญญาณเครื่องจักร (Track Machine Spirit)</h1>
+        
+        <div class="search-box">
+            <form method="GET" action="{% url 'track_ticket' %}">
+                <label style="display:block; margin-bottom:10px; font-weight:bold; font-size:1.2em;">กรอกเบอร์โทรศัพท์ หรือ ชื่อลูกค้า:</label>
+                <input type="text" name="q" value="{{ query|default_if_none:'' }}" placeholder="ค้นหารายการแจ้งซ่อม..." required>
+                <button type="submit">ค้นหา (Search Archives)</button>
+            </form>
+        </div>
+
+        {% if query %}
+            <h3>ผลการค้นหาสำหรับ: "{{ query }}"</h3>
+            {% if tickets %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ticket #</th>
+                            <th>รุ่นอุปกรณ์ (Device)</th>
+                            <th>สถานะ (Status)</th>
+                            <th>อัปเดตล่าสุด</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ticket in tickets %}
+                        <tr>
+                            <td><strong>#{{ ticket.id }}</strong></td>
+                            <td>{{ ticket.device_model }}</td>
+                            <td>
+                                <span class="status status-{{ ticket.status }}">{{ ticket.get_status_display }}</span>
+                            </td>
+                            <td>{{ ticket.updated_at|date:"d M Y, H:i" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p style="color: red; font-style: italic;">ไม่พบข้อมูลในระบบฐานข้อมูล (Archive Not Found) ลองตรวจสอบเบอร์โทรศัพท์อีกครั้ง</p>
+            {% endif %}
+        {% endif %}
+
+        <a href="/" class="back-link">« กลับสู่หน้าหลักวิหาร (Return to Main Page)</a>
+    </div>
+
+</body>
+</html>

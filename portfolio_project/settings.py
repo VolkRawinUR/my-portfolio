@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'sanctum',  # <--- เพิ่มบรรทัดนี้เข้าไปครับ (อย่าลืมลูกน้ำ , ปิดท้ายด้วยนะครับ)
 
 ]
 

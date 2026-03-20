@@ -2,126 +2,131 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Volkgaard Tech - The Lexicanum</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* โทนสีและพื้นหลังสไตล์ Lexicanum (Warhammer 40k) */
+        body { 
+            background-color: #6a6a6a; 
+            color: #000; 
+            font-family: 'Times New Roman', Times, serif; 
+            margin: 0; 
+            display: flex; /* แบ่งหน้าจอเป็น 2 ฝั่ง ซ้าย-ขวา */
             min-height: 100vh;
         }
-        .portfolio-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            transition: transform 0.3s ease;
+        /* แถบเมนูด้านซ้าย (Navigation) */
+        .sidebar { 
+            width: 250px; 
+            background-color: #444; 
+            padding: 20px; 
+            color: #ddd; 
+            border-right: 3px solid #222;
         }
-        .portfolio-card:hover {
-            transform: translateY(-5px);
+        .sidebar h2 { font-size: 1.2em; border-bottom: 1px solid #777; padding-bottom: 5px; color: #fff;}
+        .sidebar a { 
+            color: #ddd; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 15px; 
+            font-weight: bold; 
+            font-size: 1.1em;
         }
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #3b5998;
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 24px;
-        }
-        p.bio {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-size: 15px;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        .btn {
-            text-decoration: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 14px;
-            transition: opacity 0.2s;
-        }
-        .btn:hover {
-            opacity: 0.8;
-        }
-        .btn-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-        .btn-fb { background: #1877F2; }
+        .sidebar a:hover { color: #8fbc8f; } /* สีเขียวตอนเอาเมาส์ชี้ */
         
-        .btn-action {
-            background: #28a745;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
+        /* พื้นที่เนื้อหาหลักด้านขวา */
+        .content { 
+            flex-grow: 1; 
+            padding: 40px; 
         }
-        .btn-action:hover {
-            background: #218838;
+        .wiki-box { 
+            background-color: #f8f9fa; /* สีเนื้อกระดาษ Data-slate */
+            border: 2px solid #333; 
+            padding: 40px; 
+            max-width: 900px; 
+            margin: 0 auto; 
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.6); 
         }
+        h1 { border-bottom: 2px solid #888; padding-bottom: 10px; font-weight: normal; margin-top: 0; font-size: 2.5em; }
+        h3 { border-bottom: 1px solid #aaa; padding-bottom: 5px; margin-top: 30px;}
+        
+        /* กล่องรูปภาพด้านขวาบน (Infobox แบบวิกิ) */
+        .infobox { 
+            float: right; 
+            width: 250px; 
+            background-color: #e9ecef; 
+            border: 1px solid #aaa; 
+            padding: 15px; 
+            margin-left: 30px; 
+            margin-bottom: 20px;
+            text-align: center; 
+            font-size: 0.9em; 
+            font-family: Arial, sans-serif;
+        }
+        .infobox img { width: 100%; border: 2px solid #333; border-radius: 5px; margin-bottom: 10px; }
+        .infobox p { margin: 5px 0; text-align: left; border-bottom: 1px dotted #ccc; padding-bottom: 5px;}
     </style>
 </head>
 <body>
 
-    {% if profile %}
-        <div class="portfolio-card">
-            {% if profile.profile_picture %}
-                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="profile-img">
+    <div class="sidebar">
+        <div style="text-align: center; margin-bottom: 20px;">
+            {% if profile.shop_logo %}
+                <img src="{{ profile.shop_logo.url }}" alt="Shop Logo" style="max-width: 100%; height: auto; border: 2px solid #333; border-radius: 5px;">
+            {% else %}
+                <div style="border: 1px dashed #aaa; padding: 20px; color: #aaa;">[ เพิ่มโลโก้ร้านในหน้า Admin ]</div>
             {% endif %}
+        </div>
+        <h2>Lexicanum Navigation</h2>
+        <a href="/">» หน้าหลัก (Main Page)</a>
+        <a href="{% url 'create_ticket' %}">» แจ้งซ่อม (Submit Cogitator)</a>
+        <a href="{% url 'track_ticket' %}">» ติดตามสถานะ (Track Spirit)</a>
+        
+        <br><br>
+       <h2>Comms Link</h2>
+        {% if profile.facebook_link %}
+            <a href="{{ profile.facebook_link }}" target="_blank">» Facebook</a>
+        {% else %}
+            <a href="#" style="color: #666;">» Facebook <small>(ยังไม่มีลิงก์)</small></a>
+        {% endif %}
+
+        {% if profile.instagram_link %}
+            <a href="{{ profile.instagram_link }}" target="_blank">» Instagram</a>
+        {% else %}
+            <a href="#" style="color: #666;">» Instagram <small>(ยังไม่มีลิงก์)</small></a>
+        {% endif %}
+    </div>
+
+    <div class="content">
+        <div class="wiki-box">
+            <h1>Tech-Priest: รวินท์ งามเลิศ (Volk)</h1>
             
-            <h1>{{ profile.name }}</h1>
-            <p class="bio">{{ profile.bio }}</p>
-            
-            <div class="social-links">
-                {% if profile.facebook_link %}
-                    <a href="{{ profile.facebook_link }}" target="_blank" class="btn btn-fb">Facebook</a>
+            <div class="infobox">
+                {% if profile.profile_picture %}
+                    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+                {% else %}
+                    <div style="height: 200px; background: #ccc; line-height: 200px; border: 1px solid #000; margin-bottom: 10px;">[ Image Not Found ]</div>
                 {% endif %}
-                {% if profile.instagram_link %}
-                    <a href="{{ profile.instagram_link }}" target="_blank" class="btn btn-ig">Instagram</a>
-                {% endif %}
+                <p><strong>สังกัด (Faction):</strong> Volkgaard Tech</p>
+                <p><strong>บทบาท (Role):</strong> IT Support Technician</p>
+                <p><strong>สถานที่ตั้ง:</strong> Terra (Earth)</p>
             </div>
 
-            <button class="btn-action" onclick="greetUser()">ติดต่องาน / ทักทาย</button>
-        </div>
-    {% else %}
-        <div class="portfolio-card">
-            <h2>ยังไม่มีข้อมูลโปรไฟล์</h2>
-            <p>กรุณาเข้าไปเพิ่มข้อมูลของคุณในระบบ Admin (http://127.0.0.1:8000/admin)</p>
-        </div>
-    {% endif %}
+            <p>{{ profile.about_me|linebreaks }}</p>
+            <h3>ประวัติการรับใช้ (Service History)</h3>
+            <ul>
+                <li><strong>ปัจจุบัน:</strong> Technical Implementor ที่บริษัท Infinix Solution Company Limited / IT Support Technician ที่ Volkgaard Tech</li>
+                <li><strong>ส.ค. 2562 – ส.ค. 2566:</strong> Goods Flow Assistant In Store Logistics (ISL) แบบพาร์ทไทม์ ที่ IKEA</li>
+                <li><strong>ส.ค. 2561 – มี.ค. 2562:</strong> Mechanic ที่ CLAUS GARAGE COMPANY LIMITED</li>
+            </ul>
 
-    <script>
-        function greetUser() {
-            alert("ยินดีต้อนรับสู่ Portfolio ของผมครับ! สนใจพูดคุย ติดต่องาน หรือปรึกษาปัญหาด้าน IT และคอมพิวเตอร์ สามารถกดที่ลิงก์โซเชียลเพื่อทักมาได้เลยครับ ยินดีให้บริการครับ");
-        }
-    </script>
+            <h3>คลังความรู้ (Knowledge Archives)</h3>
+            <ul>
+                <li><strong>พ.ศ. 2562 – 2564:</strong> ปริญญาตรี บริหารธุรกิจบัณฑิต (สาขาระบบสารสนเทศ) – มหาวิทยาลัยเทคโนโลยีราชมงคลพระนคร</li>
+                <li><strong>พ.ศ. 2559 – 2561:</strong> ประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.) สาขาคอมพิวเตอร์ธุรกิจ – วิทยาลัยเทคโนโลยีพงษ์สวัสดิ์</li>
+            </ul>
+            
+            <div style="clear: both;"></div>
+        </div>
+    </div>
 
 </body>
 </html>
