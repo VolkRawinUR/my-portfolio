@@ -6,15 +6,18 @@ def create_ticket(request):
     if request.method == 'POST':
         form = RepairTicketForm(request.POST)
         if form.is_valid():
-            form.save() # บันทึกข้อมูลลงตาราง
-            return redirect('ticket_success') # บันทึกเสร็จแล้วเด้งไปหน้าสำเร็จ
+            ticket = form.save() # บันทึกลงตาราง และเก็บค่าตั๋วไว้ในตัวแปร ticket
+            # บันทึกเสร็จแล้วเด้งไปหน้าสำเร็จ พร้อมแนบเลข id ตั๋วไปด้วย (สำคัญมาก)
+            return redirect('ticket_success', ticket_id=ticket.id) 
     else:
         form = RepairTicketForm()
 
     return render(request, 'sanctum/create_ticket.html', {'form': form})
 
-def ticket_success(request):
-    return render(request, 'sanctum/success.html')
+# ฟังก์ชันนี้ต้องรับค่า ticket_id เข้ามาด้วย เพื่อดึงข้อมูลมาโชว์
+def ticket_success(request, ticket_id):
+    ticket = RepairTicket.objects.get(id=ticket_id)
+    return render(request, 'sanctum/success.html', {'ticket': ticket})
 def track_ticket(request):
     # ดึงคำค้นหา (เบอร์โทร หรือ ชื่อ) ที่ลูกค้าพิมพ์เข้ามา
     query = request.GET.get('q')

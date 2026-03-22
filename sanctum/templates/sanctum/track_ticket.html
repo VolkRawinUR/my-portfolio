@@ -44,35 +44,34 @@
             </form>
         </div>
 
-        {% if query %}
-            <h3>ผลการค้นหาสำหรับ: "{{ query }}"</h3>
-            {% if tickets %}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ticket #</th>
-                            <th>รุ่นอุปกรณ์ (Device)</th>
-                            <th>สถานะ (Status)</th>
-                            <th>อัปเดตล่าสุด</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for ticket in tickets %}
-                        <tr>
-                            <td><strong>#{{ ticket.id }}</strong></td>
-                            <td>{{ ticket.device_model }}</td>
-                            <td>
-                                <span class="status status-{{ ticket.status }}">{{ ticket.get_status_display }}</span>
-                            </td>
-                            <td>{{ ticket.updated_at|date:"d M Y, H:i" }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <p style="color: red; font-style: italic;">ไม่พบข้อมูลในระบบฐานข้อมูล (Archive Not Found) ลองตรวจสอบเบอร์โทรศัพท์อีกครั้ง</p>
-            {% endif %}
+        {% if query %} 
+        {% if tickets %} 
+            <h3 style="color: #333; text-align: left; margin-top: 30px;">ผลการค้นหาสำหรับ: "{{ query }}"</h3>
+            
+            {% for ticket in tickets %} 
+            <div style="background-color: #f8f9fa; padding: 20px; margin-bottom: 15px; border-radius: 8px; border-left: 5px solid #4CAF50; border: 1px solid #ddd; text-align: left; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                <h2 style="margin-top: 0; color: #8b0000;">ตั๋วหมายเลข: VK-{{ ticket.id }}</h2>
+                <p><strong>👤 นามผู้แจ้ง:</strong> {{ ticket.customer_name }}</p>
+                <p><strong>📱 เบอร์ติดต่อ:</strong> {{ ticket.phone_number }}</p>
+                <p><strong>💻 อุปกรณ์:</strong> {{ ticket.device_model }}</p>
+                <p><strong>⚠️ อาการเสีย หรือ เพิ่มอุปกรณ์:</strong> {{ ticket.issue_description }}</p>
+                
+                <div style="margin-top: 15px; padding: 10px; background-color: #e8f5e9; border-radius: 5px; display: inline-block; border: 1px solid #4CAF50;">
+                    <span style="font-size: 1.2em; font-weight: bold; color: #2e7d32;">
+                        สถานะปัจจุบัน: {{ ticket.get_status_display }}
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+
+        {% else %} 
+            <div style="margin-top: 30px; padding: 20px; background-color: #ffebee; border-radius: 8px; border: 1px solid #ffcdd2;">
+                <h3 style="color: #c62828;">❌ ไม่พบข้อมูลการแจ้งซ่อม</h3>
+                <p style="color: #b71c1c;">ไม่พบประวัติวิญญาณเครื่องจักรที่ตรงกับคำค้นหา: "<strong>{{ query }}</strong>"</p>
+                <p style="font-style: italic; color: #d32f2f;">(Archive Not Found) ลองตรวจสอบเบอร์โทรศัพท์หรือชื่ออีกครั้ง</p>
+            </div>
         {% endif %}
+    {% endif %}
 
         <a href="/" class="back-link">« กลับสู่หน้าหลักวิหาร (Return to Main Page)</a>
     </div>

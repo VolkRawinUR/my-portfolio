@@ -79,6 +79,7 @@
         <a href="/">» หน้าหลัก (Main Page)</a>
         <a href="{% url 'create_ticket' %}">» แจ้งซ่อม (Submit Cogitator)</a>
         <a href="{% url 'track_ticket' %}">» ติดตามสถานะ (Track Spirit)</a>
+        <a href="{% url 'news_page' %}">» ข่าวสารวิหาร (News)</a>
         
         <br><br>
        <h2>Comms Link</h2>
@@ -96,6 +97,7 @@
     </div>
 
     <div class="content">
+        {% block content %}
         <div class="wiki-box">
             <h1>{{ profile.site_title }}</h1>
             
@@ -135,10 +137,11 @@
                     <p style="color: #666;">[ พิมพ์ประวัติการศึกษาในหน้า Admin ]</p>
                 {% endif %}
             </div>
+
             
             <div style="clear: both;"></div>
         </div>
-    </div>
+    {% endblock %} </div>
 
 </body>
 </html>

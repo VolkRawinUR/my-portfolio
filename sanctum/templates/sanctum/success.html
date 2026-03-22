@@ -12,9 +12,17 @@
 </head>
 <body>
     <div class="box">
-        <h1>🛠️ คำร้องถูกส่งเข้าสู่ระบบแล้ว!</h1>
+        <h1>🦅 คำร้องถูกส่งเข้าสู่ระบบแล้ว!</h1>
         <p>วิหารแห่งการซ่อมแซมได้รับเรื่องของท่านแล้ว Tech-Priest จะทำการติดต่อกลับโดยเร็วที่สุด</p>
-        <p>สรรเสริญ Omnissiah!</p>
+        
+        <div style="margin: 25px 0; padding: 15px; background-color: #dcdcdc; border-radius: 8px; border: 1px dashed #555;">
+            <h3 style="margin: 0; color: #333;">หมายเลขตั๋วซ่อมของท่าน:</h3>
+            <h1 style="margin: 10px 0; color: #8b0000; font-size: 2.5em;">VK-{{ ticket.id }}</h1>
+            <p style="margin: 5px 0; color: #222;"><strong>นามผู้แจ้ง:</strong> {{ ticket.customer_name }}</p>
+            <p style="margin: 5px 0; color: #222;"><strong>อุปกรณ์:</strong> {{ ticket.device_model }}</p>
+        </div>
+
+        <p style="font-weight: bold; color: #4a5d23;">สรรเสริญ Omnissiah!</p>
         <br>
         <a href="{% url 'create_ticket' %}">กลับไปหน้าแจ้งซ่อม</a>
     </div>
