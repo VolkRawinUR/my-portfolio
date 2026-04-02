@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Volkgaard Tech - The Lexicanum</title>
+    {% if profile.profile_picture %}
+<link rel="icon" href="{{ profile.profile_picture.url }}" type="image/png">
+{% else %}
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3262/3262067.png" type="image/png">
+{% endif %}
+    <meta name="google-site-verification" content="4RflUpYSyUHTSFA3pUsiybOZR0gd6BRnFXc6hFVEMTg" />
     <style>
         /* โทนสีและพื้นหลังสไตล์ Lexicanum (Warhammer 40k) */
         body { 
