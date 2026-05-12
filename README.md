@@ -1,3 +1,4 @@
+Markdown
 # ⚙️ Volkgaard Tech - The Lexicanum (Portfolio & Service Portal)
 
 เว็บไซต์นี้คือศูนย์กลางการให้บริการด้านไอที (IT Service Hub) และแฟ้มประวัติผลงานแบบมีชีวิต (Interactive Portfolio) ที่พัฒนาด้วยเทคโนโลยี Python และ Django เพื่อยกระดับมาตรฐานการบริการลูกค้าให้เป็นระบบ โปร่งใส และตรวจสอบได้
@@ -19,43 +20,49 @@
 ```bash
 git clone [https://github.com/USERNAME/REPOSITORY_NAME.git](https://github.com/USERNAME/REPOSITORY_NAME.git)
 cd REPOSITORY_NAME
+(หมายเหตุ: อย่าลืมเปลี่ยน USERNAME และ REPOSITORY_NAME เป็นลิงก์คลังโปรเจกต์ของคุณ)
 
 สเต็ปที่ 3: สร้างสมองกลจำลอง (Virtual Environment)
 เพื่อไม่ให้ไลบรารีของโปรเจกต์นี้ไปปะปนกับงานอื่นในคอมพิวเตอร์ ให้สร้าง Virtual Environment ใหม่โดยใช้คำสั่ง:
-python -m venv venv
 
+Bash
+python -m venv venv
 สเต็ปที่ 4: เปิดใช้งานสมองกล (Activate venv)
 ก่อนติดตั้งโปรแกรมเสริมใดๆ ต้องสั่งเปิดสวิตช์ venv ทุกครั้ง:
 
 สำหรับ Windows (Command Prompt / PowerShell):
+
+Bash
 venv\Scripts\activate
-
 สำหรับ Mac / Linux:
-source venv/bin/activate
 
+Bash
+source venv/bin/activate
 (✅ ตรวจสอบความถูกต้อง: หากสำเร็จจะมีคำว่า (venv) สีเขียวปรากฏอยู่หน้าบรรทัดคำสั่งใน Terminal)
 
 สเต็ปที่ 5: ติดตั้งอะไหล่เครื่องยนต์ (Install Dependencies)
 สั่งให้ระบบอ่านรายชื่อไลบรารีจากไฟล์ requirements.txt และดาวน์โหลดมาติดตั้งให้ตรงเวอร์ชันเป๊ะๆ อัตโนมัติ:
-pip install -r requirements.txt
 
+Bash
+pip install -r requirements.txt
 สเต็ปที่ 6: ปลุกวิญญาณเครื่องจักร (Migrate Database)
 ประกอบร่างฐานข้อมูลจำลอง (db.sqlite3) เพื่อเตรียมตารางจัดเก็บข้อมูลให้พร้อม:
-python manage.py migrate
 
+Bash
+python manage.py migrate
 สเต็ปที่ 7: สร้างบัญชีผู้นำวิหาร (Create Superuser) - ทำเฉพาะกรณีที่ยังไม่มีฐานข้อมูล
 หากต้องการเข้าใช้งานระบบหลังบ้าน (/admin) ให้สร้างบัญชีผู้ดูแลระบบ:
+
+Bash
 python manage.py createsuperuser
-
 (จากนั้นให้กรอก Username, Email และ Password ตามที่ระบบสอบถาม)
-
 
 สเต็ปที่ 8: สตาร์ทเซิร์ฟเวอร์ทดสอบ (Runserver)
 สั่งเปิดใช้งานเว็บไซต์บนเครื่อง Local:
+
+Bash
 python manage.py runserver
-
 เข้าเปิดดูเว็บไซต์ได้ทันทีผ่านเบราว์เซอร์ที่ลิงก์: 👉 http://127.0.0.1:8000/
-
 
 🔄 2. ขั้นตอนการทำงานและอัปเดตระบบ (Day-to-day Workflow)
 เมื่อมีการแก้ไขโค้ด อัปโหลดรูปภาพใหม่ หรือปรับเปลี่ยนโครงสร้างฐานข้อมูล ให้ยึดหลักการทำงานตามสถานการณ์ดังต่อไปนี้:
