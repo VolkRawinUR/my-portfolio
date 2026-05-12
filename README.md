@@ -62,8 +62,11 @@ pip install -r requirements.txt
 รัน Server:
 
 Bash
+
 python manage.py migrate
+
 python manage.py runserver
+
 
 จากนั้นเปิดบราวเซอร์ไปที่ http://127.0.0.1:8000/
 
