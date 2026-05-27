@@ -1,26 +1,27 @@
 Markdown
-# ⚙️ Volkgaard Tech - The Lexicanum (Portfolio & Service Portal)
+⚙️ Volkgaard Tech - The Lexicanum (Portfolio & Service Portal)
 
 เว็บไซต์นี้คือศูนย์กลางการให้บริการด้านไอที (IT Service Hub) และแฟ้มประวัติผลงานแบบมีชีวิต (Interactive Portfolio) ที่พัฒนาด้วยเทคโนโลยี Python และ Django เพื่อยกระดับมาตรฐานการบริการลูกค้าให้เป็นระบบ โปร่งใส และตรวจสอบได้
 
 ---
 
-## 🛠️ 1. ขั้นตอนการเปิดโปรเจกต์บนคอมพิวเตอร์เครื่องใหม่ (Setup on a New Machine)
+ 🛠️ 1. ขั้นตอนการเปิดโปรเจกต์บนคอมพิวเตอร์เครื่องใหม่ (Setup on a New Machine)
 
 เมื่อต้องการนำโปรเจกต์นี้ไปรันบนคอมพิวเตอร์เครื่องอื่น ให้ทำตามขั้นตอนมาตรฐานดังต่อไปนี้:
 
-### สเต็ปที่ 1: เตรียมความพร้อมของเครื่อง (Prerequisites)
+สเต็ปที่ 1: เตรียมความพร้อมของเครื่อง (Prerequisites)
 ตรวจสอบให้แน่ใจว่าคอมพิวเตอร์เครื่องใหม่ได้ติดตั้งโปรแกรมพื้นฐานเรียบร้อยแล้ว:
 - **Python**: (ดาวน์โหลดจาก python.org) จำเป็นต้องติ๊กถูกที่ช่อง `Add Python to PATH` ตอนติดตั้ง
 - **Git**: (ดาวน์โหลดจาก git-scm.com) สำหรับใช้ดึงโค้ดจาก GitHub
 - **VS Code**: โปรแกรมสำหรับใช้เขียนและแก้ไขโค้ด
 
-### สเต็ปที่ 2: อัญเชิญคัมภีร์จาก GitHub (Git Clone)
+สเต็ปที่ 2: อัญเชิญคัมภีร์จาก GitHub (Git Clone)
 เปิด VS Code ไปที่เมนู `Terminal` -> `New Terminal` แล้วใช้คำสั่งเพื่อดึงโค้ดลงมายังเครื่อง:
 ```bash
 git clone [https://github.com/USERNAME/REPOSITORY_NAME.git](https://github.com/USERNAME/REPOSITORY_NAME.git)
 cd REPOSITORY_NAME
 (หมายเหตุ: อย่าลืมเปลี่ยน USERNAME และ REPOSITORY_NAME เป็นลิงก์คลังโปรเจกต์ของคุณ)
+
 
 สเต็ปที่ 3: สร้างสมองกลจำลอง (Virtual Environment)
 เพื่อไม่ให้ไลบรารีของโปรเจกต์นี้ไปปะปนกับงานอื่นในคอมพิวเตอร์ ให้สร้าง Virtual Environment ใหม่โดยใช้คำสั่ง:
